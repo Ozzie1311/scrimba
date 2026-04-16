@@ -1,0 +1,15 @@
+{
+  "name": "test_sql",
+  "version": "1.0.0",
+  "description": "Practicando SQL",
+  "license": "ISC",
+  "author": "Oswaldo Rodríguez",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.4.4"
+  }
+}
