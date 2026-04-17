@@ -21,6 +21,10 @@ import fs from 'fs'
   const alterTables = fs.readFileSync('alter-table.sql', 'utf8')
   await database.exec(alterTables)
 
+  //Alter constraints
+  const alterConstraints = fs.readFileSync('alter-constraint.sql', 'utf8')
+  await database.exec(alterConstraints)
+
   //Insert new Data
   const insertNewData = fs.readFileSync('insert-new-data.sql', 'utf8')
   await database.exec(insertNewData)
