@@ -13,6 +13,18 @@ import fs from 'fs'
   const crudOperations = fs.readFileSync('crud-operations.sql', 'utf8')
   await database.exec(crudOperations)
 
+  //Populate our new tables
+  const populateTables = fs.readFileSync('populate-tables.sql', 'utf8')
+  await database.exec(populateTables)
+
+  //Alter table
+  const alterTables = fs.readFileSync('alter-table.sql', 'utf8')
+  await database.exec(alterTables)
+
+  //Insert new Data
+  const insertNewData = fs.readFileSync('insert-new-data.sql', 'utf8')
+  await database.exec(insertNewData)
+
   //Load the SQL query file
   const query = fs.readFileSync('query.sql', 'utf8')
 
