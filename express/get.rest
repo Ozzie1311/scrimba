@@ -1,0 +1,8 @@
+# get http://localhost:8005/api?industry=renewable%20energy&country=germany&has_mvp=true
+# get http://localhost:8005/api?industry=renewable%20energy&country=germany&has_mvp=false
+
+# get http://localhost:8005/api?has_mvp=false
+
+# get http://localhost:8005/api/country/australia
+
+get http://localhost:8005/api/queseyo
