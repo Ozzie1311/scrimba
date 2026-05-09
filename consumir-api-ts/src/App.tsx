@@ -1,35 +1,19 @@
-import type { ApiResponse } from './types/types'
-import { useState, useEffect } from 'react'
+import PokemonInfo from './components/PokemonInfo'
+import Form from './components/Form'
+import { usePokemon } from './hooks/usePokemon'
 
 function App() {
-  const [search, setSearch] = useState<string>('pikachu')
-  const [pokemon, setPokemon] = useState<ApiResponse | null>(null)
-
-  useEffect(() => {
-    async function fetchPokemon() {
-      try {
-        const baseUrl = `https://pokeapi.co/api/v2/pokemon/${search}`
-        const response = await fetch(baseUrl)
-        if (!response.ok) throw new Error(`Failed to fectch pokemon ${search}`)
-        const data: ApiResponse = await response.json()
-        setPokemon(data)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-
-    fetchPokemon()
-  }, [pokemon])
+  const { search, setSearch, pokemon, isLoading, error, fetchPokemon } =
+    usePokemon()
 
   return (
     <div>
       <h1>Comenzando proyecto de Consumir API</h1>
-      <div>
-        <h2>Name: {pokemon?.name}</h2>
-        <p>Height: {pokemon?.height}</p>
-        <span>Weight: {pokemon?.weight}</span>
-        <span>Sprites: {pokemon?.sprites}</span>
-      </div>
+      <h2>Busca tu pokemon:</h2>
+      <Form search={search} setSearch={setSearch} fetchPokemon={fetchPokemon} />
+      {isLoading && <p>Cargando pokemon...</p>}
+      {error && <p>Pokemon no encontrado...</p>}
+      {!isLoading && !error && pokemon && <PokemonInfo pokemon={pokemon} />}
     </div>
   )
 }
