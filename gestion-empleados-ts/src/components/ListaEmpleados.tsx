@@ -1,19 +1,22 @@
 import { Empleado } from '../classes/empleado'
 
-type EmpleadoPublico = Omit<Empleado, 'salario'>
+// type EmpleadoPublico = Omit<Empleado, 'salario'>
 
 interface Props {
-  empleados: EmpleadoPublico[]
+  empleados: Empleado[]
+  onSeleccionarEditar: (empleado: Empleado) => void
+  onCancel: () => void
 }
 
-function ListaEmpleados({ empleados }: Props) {
+function ListaEmpleados({ empleados, onSeleccionarEditar, onCancel }: Props) {
   return (
     <div>
       <ul>
-        {empleados?.map(e => (
+        {empleados?.map((e) => (
           <li key={e.id}>
             {e.getInfo()}
-            <button onClick={() => onEditar(e)}>Editar</button>
+            <button onClick={() => onSeleccionarEditar(e)}>Editar</button>
+            <button onClick={onCancel}>Cancel</button>
           </li>
         ))}
       </ul>
